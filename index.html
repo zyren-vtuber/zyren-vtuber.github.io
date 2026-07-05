@@ -172,6 +172,18 @@
   }
   .profile p{ margin:7px 0; font-size:15px; }
   .profile strong{ color:var(--blue-deep); }
+  .profile a{ color:var(--blue-mid); text-decoration:none; }
+  .profile a:hover{ text-decoration:underline; }
+
+  /* --- Créditos: encabezados y galería de imágenes del modelo --- */
+  .credit-head{ text-align:center; font-weight:700; color:var(--blue-deep); font-size:19px; margin:20px 0 4px; }
+  .credit-sub{ text-align:center; margin:0 0 8px; }
+  .credit-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:12px 0; }
+  .credit-grid figure{ margin:0; }
+  .credit-grid img{ width:100%; height:auto; border-radius:16px; display:block; box-shadow:0 4px 14px rgba(23,58,112,.15); }
+  .credit-single{ display:block; margin:12px auto; height:auto; border-radius:16px; box-shadow:0 4px 14px rgba(23,58,112,.15); }
+  .credit-caption{ text-align:center; font-size:13px; color:#8593ab; margin:6px 0 0; }
+  .credit-divider{ border:none; border-top:2px dashed var(--blue-light); margin:22px 0; }
 
   @media (max-width:480px){
     .page{ padding:32px 22px 26px; border-radius:26px; }
@@ -243,13 +255,30 @@
   </section>
 
   <section id="four-section" class="section">
-    <div class="badge">Credits</div>
-    <div class="credit-block">
-      <img src="https://i.ibb.co/DDxBXM70/Banner-de-Credit-en-estilo-kawaii.png" alt="Credits Banner" class="section-banner" style="margin-bottom:14px;">
-      <p><strong>Banner de Credit en estilo kawaii</strong></p>
-      <p><strong>Modelo / Live2D:</strong> (Edita con el crédito real)</p>
-      <p><strong>Sitio web:</strong> Construido con HTML/CSS en GitHub Pages</p>
+    <img src="https://i.ibb.co/DDxBXM70/Banner-de-Credit-en-estilo-kawaii.png" alt="Credits" class="section-banner">
+
+    <p class="credit-head">1.0 Zyren | ザイレン 💙 — Model Credits</p>
+    <p class="credit-sub"><strong>Model source:</strong> REALITY app</p>
+    <div class="credit-grid">
+      <figure>
+        <img src="https://i.ibb.co/JFj0c3xJ/3-D-Model-of-My-Character-Female.png" alt="Modelo 3D de Zyren (femenino)">
+        <figcaption class="credit-caption">3D Model — Female</figcaption>
+      </figure>
+      <figure>
+        <img src="https://i.ibb.co/mrwKbhnQ/3-D-Model-of-my-Character-Male.png" alt="Modelo 3D de Zyren (masculino)">
+        <figcaption class="credit-caption">3D Model — Male</figcaption>
+      </figure>
     </div>
+    <img src="https://i.ibb.co/svhHy0Wv/Character-Model-in-REALITY-APP.png" alt="Modelo de Zyren en la app REALITY" class="credit-single" style="max-width:200px;">
+    <p class="credit-caption">Model in the REALITY app</p>
+
+    <hr class="credit-divider">
+
+    <p class="credit-head">Logo / Emote / Panel artist</p>
+    <p class="credit-sub"><strong>Artist:</strong> Zyren | ザイレン 💙</p>
+    <img src="https://i.ibb.co/398kMpWM/Zyren-VT-Avatar-travieso-con-cuerno-y-ojos-brillantes.png" alt="Avatar de Zyren por Zyren" class="credit-single" style="max-width:230px;">
+
+    <p class="note">Sitio construido con HTML/CSS en GitHub Pages · hecho con 💙</p>
     <a href="#main" class="btn back">← Back</a>
   </section>
 
