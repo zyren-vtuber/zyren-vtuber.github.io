@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zyren | ザイレン</title>
+<style>
+  :root{
+    --blue-light:#8fd3ff;
+    --blue-mid:#3b8ce0;
+    --blue-deep:#173a70;
+    --navy:#0b1c3a;
+    --navy-deep:#050c1c;
+    --white:#ffffff;
+    --text:#173157;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:40px 16px;
+    font-family:'Segoe UI', 'Poppins', Verdana, sans-serif;
+    background: radial-gradient(circle at 50% 35%, var(--blue-mid) 0%, var(--navy) 55%, var(--navy-deep) 100%);
+    background-attachment:fixed;
+    color:var(--text);
+  }
+  .page{
+    background:var(--white);
+    border-radius:32px;
+    max-width:480px;
+    width:100%;
+    padding:40px 32px 32px;
+    box-shadow: 0 0 70px 14px rgba(90,180,255,0.55);
+    position:relative;
+  }
+  .section{display:none;}
+  .section.active{display:block; animation: fadeIn .3s ease;}
+  @keyframes fadeIn{ from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:translateY(0);} }
+  .logo{ display:block; margin:0 auto 26px; max-width:260px; width:100%; }
+  .buttons{ display:flex; flex-direction:column; gap:12px; margin-bottom:22px; }
+  .btn{
+    display:block;
+    text-align:center;
+    padding:11px 16px;
+    border:2px solid var(--blue-deep);
+    border-radius:12px;
+    color:var(--blue-deep);
+    text-decoration:none;
+    font-weight:600;
+    background:transparent;
+    transition: all .2s ease;
+    cursor:pointer;
+  }
+  .btn:hover{ background:var(--blue-deep); color:var(--white); transform: translateY(-1px); }
+  .changelog{ text-align:center; font-size:13.5px; color:#5b6c8a; margin-top:6px; line-height:1.5; }
+  .badge{
+    text-align:center;
+    color:var(--blue-deep);
+    border:2px solid var(--blue-deep);
+    border-radius:16px;
+    padding:12px;
+    margin-bottom:22px;
+    font-size:22px;
+    font-weight:800;
+    letter-spacing:1px;
+    background:linear-gradient(180deg,#eaf5ff,#c8e6ff);
+  }
+  p{ line-height:1.6; margin:0 0 14px; }
+  .intro, .note{ text-align:center; }
+  .note{ font-size:13px; color:#8593ab; font-style:italic; }
+  .faq-item{ margin-bottom:18px; text-align:center; }
+  .q{ font-weight:700; margin-bottom:2px; color:var(--blue-deep); }
+  .a{ margin-top:0; color:#3a4a68; }
+  .social-list{ display:flex; flex-direction:column; gap:10px; margin-bottom:16px; }
+  .back{ margin-top:10px; }
+  .footer{ text-align:center; margin-top:26px; font-size:12px; color:#a9c3e6; }
+  .credit-block{ text-align:center; margin-bottom:10px; }
+</style>
+</head>
+<body>
+<div class="page" id="page">
+
+  <section id="main-section" class="section">
+    <img src="zyren-logo.png" alt="Zyren logo" class="logo">
+    <div class="buttons">
+      <a href="#one" class="btn">About me</a>
+      <a href="#two" class="btn">FAQ</a>
+      <a href="#three" class="btn">Official socials</a>
+      <a href="#four" class="btn">Credits</a>
+    </div>
+    <p class="changelog">Last updated on July 5th, 2026<br>1. Sitio migrado a GitHub Pages, navegación entre secciones activada.</p>
+  </section>
+
+  <section id="one-section" class="section">
+    <div class="badge">About me</div>
+    <p><strong>Hmm.. so you wanna know a bit about me?</strong></p>
+    <p>My name is Zyren! I'm a VTuber who loves making people happy through music and entertainment~!</p>
+    <p>I'm a singer of electronic music! カンタンテ・デ・ムシカ・エレクトロニカ 💙✨</p>
+    <p>I love connecting with everyone through music and streams!</p>
+    <a href="#main" class="btn back">← Back</a>
+  </section>
+
+  <section id="two-section" class="section">
+    <div class="badge">FAQ</div>
+    <p class="intro">This page is dedicated to answering some frequently asked questions!</p>
+    <div class="faq-item">
+      <p class="q">Q: How old are you?</p>
+      <p class="a">A: (Edita esta respuesta aquí)</p>
+    </div>
+    <div class="faq-item">
+      <p class="q">Q: What software do you use?</p>
+      <p class="a">A: (Edita esta respuesta aquí)</p>
+    </div>
+    <div class="faq-item">
+      <p class="q">Q: Do you take collabs?</p>
+      <p class="a">A: (Edita esta respuesta aquí)</p>
+    </div>
+    <p class="note">Esta sección es un ejemplo &mdash; reemplázala con tus preguntas y respuestas reales.</p>
+    <a href="#main" class="btn back">← Back</a>
+  </section>
+
+  <section id="three-section" class="section">
+    <div class="badge">Socials</div>
+    <div class="social-list">
+      <a href="#" class="btn">▶ YouTube</a>
+      <a href="#" class="btn">🟣 Twitch</a>
+      <a href="#" class="btn">🐦 Twitter / X</a>
+      <a href="#" class="btn">📷 Instagram</a>
+      <a href="#" class="btn">🎵 TikTok</a>
+      <a href="#" class="btn">💬 Discord</a>
+    </div>
+    <p class="note">Reemplaza los enlaces "#" de arriba con tus URLs reales de cada red.</p>
+    <a href="#main" class="btn back">← Back</a>
+  </section>
+
+  <section id="four-section" class="section">
+    <div class="badge">Credits</div>
+    <div class="credit-block">
+      <p><strong>Logo &amp; branding:</strong> (Edita con el crédito real del diseñador)</p>
+      <p><strong>Modelo / Live2D:</strong> (Edita con el crédito real del artista)</p>
+      <p><strong>Sitio web:</strong> Construido con HTML/CSS en GitHub Pages</p>
+    </div>
+    <a href="#main" class="btn back">← Back</a>
+  </section>
+
+  <p class="footer">Zyren VT &middot; hecho con 💙</p>
+</div>
+
+<script>
+  var sections = {
+    main: document.getElementById('main-section'),
+    one: document.getElementById('one-section'),
+    two: document.getElementById('two-section'),
+    three: document.getElementById('three-section'),
+    four: document.getElementById('four-section')
+  };
+  function showSection(){
+    var hash = (window.location.hash || '#main').replace('#','');
+    if(!sections[hash]){ hash = 'main'; }
+    Object.keys(sections).forEach(function(key){
+      if(key === hash){ sections[key].classList.add('active'); }
+      else{ sections[key].classList.remove('active'); }
+    });
+    window.scrollTo(0,0);
+  }
+  window.addEventListener('hashchange', showSection);
+  window.addEventListener('DOMContentLoaded', showSection);
+</script>
+</body>
+</html>
