@@ -185,6 +185,36 @@
   .credit-caption{ text-align:center; font-size:13px; color:#8593ab; margin:6px 0 0; }
   .credit-divider{ border:none; border-top:2px dashed var(--blue-light); margin:22px 0; }
 
+  /* Cajita con borde tipo "píldora" (estilo Azuki) para notas de créditos y pie */
+  .pill-note{
+    display:block;
+    width:fit-content;
+    max-width:100%;
+    margin:16px auto 0;
+    padding:10px 20px;
+    border:2px solid var(--blue-deep);
+    border-radius:999px;
+    color:var(--blue-deep);
+    background:linear-gradient(180deg,#eaf5ff,#d7ecff);
+    font-size:15px;
+    font-style:italic;
+    text-align:center;
+    text-decoration:none;
+    transition:all .18s ease;
+  }
+  a.pill-note:hover{ background:var(--blue-deep); color:var(--white); }
+  .made-with{
+    display:block;
+    width:fit-content;
+    margin:26px auto 0;
+    padding:7px 18px;
+    border:2px solid var(--blue-light);
+    border-radius:999px;
+    color:#7fa8d8;
+    font-size:12.5px;
+    text-align:center;
+  }
+
   @media (max-width:480px){
     .page{ padding:32px 22px 26px; border-radius:26px; }
     .btn{ font-size:18px; }
@@ -278,11 +308,11 @@
     <p class="credit-sub"><strong>Artist:</strong> Zyren | ザイレン 💙</p>
     <img src="https://i.ibb.co/398kMpWM/Zyren-VT-Avatar-travieso-con-cuerno-y-ojos-brillantes.png" alt="Avatar de Zyren por Zyren" class="credit-single" style="max-width:230px;">
 
-    <p class="note">Sitio construido con HTML/CSS en GitHub Pages · hecho con 💙</p>
+    <p class="pill-note">All credits belong to their respective artists 💙</p>
     <a href="#main" class="btn back">← Back</a>
   </section>
 
-  <p class="footer">Zyren VT · hecho con 💙</p>
+  <span class="made-with">( Made with GitHub Pages )</span>
 </div>
 
 <script>
