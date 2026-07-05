@@ -38,18 +38,31 @@
     -webkit-font-smoothing:antialiased;
   }
 
-  /* Puntitos/estrellitas suaves de fondo, como el estilo de la referencia */
-  body::before{
-    content:"";
+  /* Lienzo de partículas animadas de fondo (estilo Azuki) */
+  #particles{
     position:fixed;
     inset:0;
+    width:100%;
+    height:100%;
+    z-index:0;
     pointer-events:none;
-    background-image:
-      radial-gradient(2px 2px at 20% 22%, rgba(255,255,255,.7), transparent),
-      radial-gradient(2px 2px at 82% 30%, rgba(255,255,255,.6), transparent),
-      radial-gradient(1.5px 1.5px at 68% 74%, rgba(255,255,255,.55), transparent),
-      radial-gradient(1.5px 1.5px at 12% 68%, rgba(255,255,255,.5), transparent),
-      radial-gradient(2px 2px at 90% 82%, rgba(255,255,255,.5), transparent);
+    display:block;
+  }
+  /* Respaldo de estrellitas estáticas si se prefiere menos movimiento */
+  @media (prefers-reduced-motion: reduce){
+    #particles{ display:none; }
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background-image:
+        radial-gradient(2px 2px at 20% 22%, rgba(255,255,255,.7), transparent),
+        radial-gradient(2px 2px at 82% 30%, rgba(255,255,255,.6), transparent),
+        radial-gradient(1.5px 1.5px at 68% 74%, rgba(255,255,255,.55), transparent),
+        radial-gradient(1.5px 1.5px at 12% 68%, rgba(255,255,255,.5), transparent),
+        radial-gradient(2px 2px at 90% 82%, rgba(255,255,255,.5), transparent);
+    }
   }
 
   .page{
@@ -155,6 +168,7 @@
 </style>
 </head>
 <body>
+<canvas id="particles" aria-hidden="true"></canvas>
 <div class="page" id="page">
 
   <section id="main-section" class="section">
@@ -243,6 +257,85 @@
   }
   window.addEventListener('hashchange', showSection);
   window.addEventListener('DOMContentLoaded', showSection);
+</script>
+
+<script>
+  // --- Partículas animadas de fondo (canvas ligero, sin librerías) ---
+  (function(){
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(reduce) return; // respeta la preferencia de menos movimiento
+
+    var canvas = document.getElementById('particles');
+    if(!canvas) return;
+    var ctx = canvas.getContext('2d');
+    var w, h, dpr, particles = [];
+
+    // Colores acordes a la paleta azul de Zyren
+    var COLORS = ['255,255,255', '143,211,255', '200,230,255'];
+
+    function rand(min, max){ return Math.random() * (max - min) + min; }
+
+    function resize(){
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = window.innerWidth;
+      h = window.innerHeight;
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      canvas.style.width = w + 'px';
+      canvas.style.height = h + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      // Densidad proporcional al tamaño de pantalla
+      var count = Math.round(Math.min(110, Math.max(40, (w * h) / 16000)));
+      particles = [];
+      for(var i = 0; i < count; i++){ particles.push(makeParticle(true)); }
+    }
+
+    function makeParticle(spread){
+      return {
+        x: rand(0, w),
+        y: spread ? rand(0, h) : h + rand(0, 40),
+        r: rand(0.8, 2.6),
+        vy: rand(0.12, 0.5),          // sube lentamente
+        sway: rand(0.3, 0.9),          // amplitud del vaivén
+        swaySpeed: rand(0.4, 1.2),
+        phase: rand(0, Math.PI * 2),
+        baseAlpha: rand(0.25, 0.85),
+        twinkleSpeed: rand(0.6, 1.8),
+        color: COLORS[Math.floor(rand(0, COLORS.length))]
+      };
+    }
+
+    var t = 0;
+    function draw(){
+      t += 0.016;
+      ctx.clearRect(0, 0, w, h);
+      for(var i = 0; i < particles.length; i++){
+        var p = particles[i];
+        p.y -= p.vy;                                   // flota hacia arriba
+        var x = p.x + Math.sin(t * p.swaySpeed + p.phase) * p.sway;
+        var alpha = p.baseAlpha * (0.55 + 0.45 * Math.sin(t * p.twinkleSpeed + p.phase)); // titileo
+
+        // resplandor suave
+        var g = ctx.createRadialGradient(x, p.y, 0, x, p.y, p.r * 3);
+        g.addColorStop(0, 'rgba(' + p.color + ',' + alpha + ')');
+        g.addColorStop(1, 'rgba(' + p.color + ',0)');
+        ctx.fillStyle = g;
+        ctx.beginPath();
+        ctx.arc(x, p.y, p.r * 3, 0, Math.PI * 2);
+        ctx.fill();
+
+        if(p.y < -10){ particles[i] = makeParticle(false); } // reaparece abajo
+      }
+      requestAnimationFrame(draw);
+    }
+
+    var rt;
+    window.addEventListener('resize', function(){
+      clearTimeout(rt); rt = setTimeout(resize, 150);
+    });
+    resize();
+    requestAnimationFrame(draw);
+  })();
 </script>
 </body>
 </html>
