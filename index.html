@@ -4,8 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Zyren | ザイレン</title>
+
+<!-- Misma tipografía redondeada que usa la página de Azuki -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mali:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
 <style>
   :root{
+    /* --- Tu paleta de siempre (sin tocar) --- */
     --blue-light:#8fd3ff;
     --blue-mid:#3b8ce0;
     --blue-deep:#173a70;
@@ -15,6 +22,7 @@
     --text:#173157;
   }
   *{box-sizing:border-box;}
+
   body{
     margin:0;
     min-height:100vh;
@@ -22,69 +30,119 @@
     align-items:center;
     justify-content:center;
     padding:40px 16px;
-    font-family:'Segoe UI', 'Poppins', Verdana, sans-serif;
-    background: radial-gradient(circle at 50% 35%, var(--blue-mid) 0%, var(--navy) 55%, var(--navy-deep) 100%);
+    /* Fuente Mali como la de Azuki, con respaldos por si tarda en cargar */
+    font-family:'Mali','Segoe UI',Verdana,sans-serif;
+    background: radial-gradient(circle at 50% 32%, var(--blue-mid) 0%, var(--navy) 55%, var(--navy-deep) 100%);
     background-attachment:fixed;
     color:var(--text);
+    -webkit-font-smoothing:antialiased;
   }
+
+  /* Puntitos/estrellitas suaves de fondo, como el estilo de la referencia */
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background-image:
+      radial-gradient(2px 2px at 20% 22%, rgba(255,255,255,.7), transparent),
+      radial-gradient(2px 2px at 82% 30%, rgba(255,255,255,.6), transparent),
+      radial-gradient(1.5px 1.5px at 68% 74%, rgba(255,255,255,.55), transparent),
+      radial-gradient(1.5px 1.5px at 12% 68%, rgba(255,255,255,.5), transparent),
+      radial-gradient(2px 2px at 90% 82%, rgba(255,255,255,.5), transparent);
+  }
+
   .page{
     background:var(--white);
-    border-radius:32px;
-    max-width:480px;
+    border-radius:30px;
+    max-width:460px;
     width:100%;
-    padding:40px 32px 32px;
+    padding:42px 34px 34px;
     box-shadow: 0 0 70px 14px rgba(90,180,255,0.55);
     position:relative;
+    z-index:1;
   }
+
   .section{display:none;}
   .section.active{display:block; animation: fadeIn .3s ease;}
   @keyframes fadeIn{ from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:translateY(0);} }
-  .logo{ display:block; margin:0 auto 26px; max-width:260px; width:100%; }
-  .buttons{ display:flex; flex-direction:column; gap:12px; margin-bottom:22px; }
+
+  /* --- Logo bien centrado y a tamaño correcto --- */
+  .logo{
+    display:block;
+    margin:4px auto 30px;
+    max-width:280px;
+    width:85%;
+    height:auto;
+  }
+
+  .buttons{ display:flex; flex-direction:column; gap:14px; margin-bottom:22px; }
+
+  /* --- Botones tipo "píldora" iguales a los de Azuki --- */
   .btn{
     display:block;
     text-align:center;
-    padding:11px 16px;
+    padding:14px 20px;
     border:2px solid var(--blue-deep);
-    border-radius:12px;
+    border-radius:999px;              /* completamente redondeados */
     color:var(--blue-deep);
     text-decoration:none;
+    font-family:'Mali',sans-serif;
     font-weight:600;
+    font-size:19px;
     background:transparent;
-    transition: all .2s ease;
+    transition: all .18s ease;
     cursor:pointer;
   }
-  .btn:hover{ background:var(--blue-deep); color:var(--white); transform: translateY(-1px); }
-  .changelog{ text-align:center; font-size:13.5px; color:#5b6c8a; margin-top:6px; line-height:1.5; }
+  .btn:hover{
+    background:var(--blue-deep);
+    color:var(--white);
+    transform: translateY(-1px);
+    box-shadow:0 6px 16px rgba(23,58,112,.28);
+  }
+
+  .changelog{ text-align:center; font-size:14px; color:#5b6c8a; margin-top:10px; line-height:1.55; }
+  .changelog strong{ color:var(--blue-deep); }
+
+  /* Título de sección tipo "Socials / Credits" */
   .badge{
     text-align:center;
     color:var(--blue-deep);
     border:2px solid var(--blue-deep);
-    border-radius:16px;
+    border-radius:999px;
     padding:12px;
     margin-bottom:22px;
-    font-size:22px;
-    font-weight:800;
-    letter-spacing:1px;
+    font-size:23px;
+    font-weight:700;
+    letter-spacing:.5px;
     background:linear-gradient(180deg,#eaf5ff,#c8e6ff);
   }
+
+  /* --- Banners de cada sección ajustados al ancho de la tarjeta --- */
   .section-banner{
     display:block;
-    margin:0 auto 20px;
-    max-width:340px;
+    margin:0 auto 22px;
+    max-width:100%;
     width:100%;
+    border-radius:18px;
     height:auto;
   }
-  p{ line-height:1.6; margin:0 0 14px; }
+
+  p{ line-height:1.65; margin:0 0 14px; font-size:16px; }
   .intro, .note{ text-align:center; }
-  .note{ font-size:13px; color:#8593ab; font-style:italic; }
+  .note{ font-size:13.5px; color:#8593ab; font-style:italic; }
   .faq-item{ margin-bottom:18px; text-align:center; }
   .q{ font-weight:700; margin-bottom:2px; color:var(--blue-deep); }
   .a{ margin-top:0; color:#3a4a68; }
-  .social-list{ display:flex; flex-direction:column; gap:10px; margin-bottom:16px; }
-  .back{ margin-top:10px; }
-  .footer{ text-align:center; margin-top:26px; font-size:12px; color:#a9c3e6; }
+  .social-list{ display:flex; flex-direction:column; gap:12px; margin-bottom:16px; }
+  .back{ margin-top:12px; }
+  .footer{ text-align:center; margin-top:28px; font-size:13px; color:#a9c3e6; }
   .credit-block{ text-align:center; margin-bottom:10px; }
+
+  @media (max-width:480px){
+    .page{ padding:32px 22px 26px; border-radius:26px; }
+    .btn{ font-size:18px; }
+  }
 </style>
 </head>
 <body>
@@ -98,7 +156,7 @@
       <a href="#three" class="btn">Official socials</a>
       <a href="#four" class="btn">Credits</a>
     </div>
-    <p class="changelog">Last updated on July 5th, 2026<br>4. Banner kawaii de Credits actualizado.</p>
+    <p class="changelog"><strong>Last updated on July 5th, 2026</strong><br>4. Banner kawaii de Credits actualizado.</p>
   </section>
 
   <section id="one-section" class="section">
@@ -146,7 +204,7 @@
   <section id="four-section" class="section">
     <div class="badge">Credits</div>
     <div class="credit-block">
-      <img src="https://i.ibb.co/DDxBXM70/Banner-de-Credit-en-estilo-kawaii.png" alt="Credits Banner" class="section-banner" style="margin-bottom:12px;">
+      <img src="https://i.ibb.co/DDxBXM70/Banner-de-Credit-en-estilo-kawaii.png" alt="Credits Banner" class="section-banner" style="margin-bottom:14px;">
       <p><strong>Banner de Credit en estilo kawaii</strong></p>
       <p><strong>Modelo / Live2D:</strong> (Edita con el crédito real)</p>
       <p><strong>Sitio web:</strong> Construido con HTML/CSS en GitHub Pages</p>
@@ -177,6 +235,5 @@
   window.addEventListener('hashchange', showSection);
   window.addEventListener('DOMContentLoaded', showSection);
 </script>
-<!-- redeploy trigger -->
 </body>
 </html>
