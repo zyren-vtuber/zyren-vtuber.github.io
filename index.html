@@ -51,6 +51,21 @@
   }
   *{box-sizing:border-box;}
 
+  /* Deter casual image saving: block dragging and selecting images */
+  img{
+    -webkit-user-drag:none;
+    -khtml-user-drag:none;
+    -moz-user-drag:none;
+    -o-user-drag:none;
+    user-select:none;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    pointer-events:none;   /* images can't be right-clicked directly */
+  }
+  /* Re-enable interaction for clickable images (e.g. inside links) */
+  a img{ pointer-events:auto; }
+
   /* Visually hidden but still accessible to search engines and screen readers */
   .sr-only{
     position:absolute;
@@ -472,6 +487,29 @@
     });
     resize();
     requestAnimationFrame(draw);
+  })();
+</script>
+
+<script>
+  // --- Casual image-protection deterrents ---
+  // Note: this only stops casual saving; it cannot fully prevent downloads.
+  (function(){
+    // Block right-click on images (and the page in general)
+    document.addEventListener('contextmenu', function(e){
+      if(e.target && e.target.tagName === 'IMG'){ e.preventDefault(); }
+    });
+    // Block dragging images out to the desktop
+    document.addEventListener('dragstart', function(e){
+      if(e.target && e.target.tagName === 'IMG'){ e.preventDefault(); }
+    });
+    // Block common save/view-source keyboard shortcuts
+    document.addEventListener('keydown', function(e){
+      var k = (e.key || '').toLowerCase();
+      // Ctrl+S (save), Ctrl+U (view source)
+      if((e.ctrlKey || e.metaKey) && (k === 's' || k === 'u')){
+        e.preventDefault();
+      }
+    });
   })();
 </script>
 </body>
